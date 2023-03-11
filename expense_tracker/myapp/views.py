@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import ExpenseForm
 from .models import Expense
 
@@ -20,10 +20,19 @@ def index(request):
 
 
 def edit(request,id):
-    expense = Expense.objects.get(pk=id)
-    expense_form = ExpenseForm(instance=expense)
+   
+    if request.method == "POST":
+        expense = Expense.objects.get(pk=id)
+        form = ExpenseForm(request.POST, instance=expense)        
+        if form.is_valid():
+            form.save()
+             
+            return redirect('home')
+    else:
+        expense = Expense.objects.get(pk=id)
+        expense_form = ExpenseForm(instance=expense)
 
-    return render(request, "myapp/edit.html", {
-        'expense_form': expense_form,
-        'expense': expense
-    })
+        return render(request, "myapp/edit.html", {
+            'expense_form': expense_form,
+            'expense': expense
+        })

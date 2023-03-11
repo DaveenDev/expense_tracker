@@ -36,3 +36,10 @@ def edit(request,id):
             'expense_form': expense_form,
             'expense': expense
         })
+
+def delete(request, id):
+    if request.method=="POST" and 'delete-form' in request.POST:
+        expense = Expense.objects.get(pk=id)
+        expense.delete()
+    
+    return redirect('home')

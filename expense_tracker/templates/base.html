@@ -15,6 +15,14 @@
     {% block page_css %}{% endblock  %}
   </head>
   <body>
+    <nav class="shadow-lg">
+      <div class="container flex flex-wrap justify-between items-center mx-auto">
+        <a href="#" class="flex">
+            <img src="{% static "myapp/images/wallet.png" %}" alt="Logo" class="mr-5 my-3">
+            <span class="font-semibold mx-2 self-center">Expense Tracker</span>
+        </a>
+      </div>
+    </nav>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
